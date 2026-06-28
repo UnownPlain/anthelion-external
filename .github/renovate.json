@@ -1,0 +1,32 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:recommended", "helpers:pinGitHubActionDigestsToSemver"],
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["minor", "patch", "digest"],
+			"automerge": true
+		},
+		{
+			"matchPackageNames": ["jdx/mise"],
+			"minimumReleaseAge": "3 days"
+		},
+		{
+			"matchManagers": "github-actions",
+			"minimumReleaseAge": "7 days"
+		}
+	],
+	"customManagers": [
+		{
+			"customType": "regex",
+			"managerFilePatterns": ["/(^|/)\\.github/workflows/[^/]+\\.ya?ml$/"],
+			"depNameTemplate": "mise",
+			"packageNameTemplate": "jdx/mise",
+			"datasourceTemplate": "github-releases",
+			"versioningTemplate": "semver",
+			"extractVersionTemplate": "^v(?<version>.*)$",
+			"matchStrings": [
+				"uses:\\s+jdx/mise-action@[^\\s#]+(?:\\s+#[^\\r\\n]*)?\\r?\\n\\s+with:\\r?\\n\\s+version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+			]
+		}
+	]
+}

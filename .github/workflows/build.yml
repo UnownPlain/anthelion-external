@@ -1,0 +1,78 @@
+name: Build Anthelion
+
+on:
+  schedule:
+    - cron: '33 8 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: build-anthelion
+  cancel-in-progress: true
+
+permissions: {}
+
+defaults:
+  run:
+    shell: bash -euo pipefail {0}
+
+env:
+  UPSTREAM_REPOSITORY: UnownPlain/anthelion
+
+jobs:
+  build:
+    name: Build and publish
+    runs-on: ubuntu-slim
+    timeout-minutes: 10
+
+    permissions:
+      contents: write # Required to push to repo
+
+    steps:
+      - name: Checkout output repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: true # Required to push to repo
+
+      - name: Checkout Anthelion
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          repository: ${{ env.UPSTREAM_REPOSITORY }}
+          path: upstream
+          persist-credentials: false
+
+      - name: Set up Bun
+        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
+        with:
+          version: 2026.6.14
+          install_args: bun
+          working_directory: ${{ github.workspace }}/upstream
+
+      - name: Install dependencies and build
+        working-directory: upstream
+        run: |
+          bun ci
+          bun build:ext
+
+      - name: Update build output
+        run: |
+          rm -rf dist src package.json
+          mkdir -p src/schema
+          cp -R upstream/dist .
+          cp upstream/package.json .
+          cp upstream/src/schema/schema.json src/schema/
+
+      - name: Commit and push
+        run: |
+          upstream_sha="$(git -C upstream rev-parse HEAD)"
+          rm -rf upstream
+
+          if git diff --quiet --exit-code && [ -z "$(git status --short)" ]; then
+            echo "Build output is already current."
+            exit 0
+          fi
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add --all
+          git commit -m "Build ${UPSTREAM_REPOSITORY}@${upstream_sha}"
+          git push
