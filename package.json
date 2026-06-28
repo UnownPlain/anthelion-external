@@ -1,0 +1,75 @@
+{
+	"name": "anthelion",
+	"version": "0.0.0",
+	"private": "true",
+	"description": "Monitors software releases and submits updated manifests to the Windows Package Manager Community Repository",
+	"license": "GPL-3.0-or-later AND MIT",
+	"author": "UnownPlain",
+	"bin": {
+		"anthelion": "./dist/bin/main.js",
+		"anthelion-test": "./dist/bin/test.js"
+	},
+	"files": [
+		"dist",
+		"src/schema/schema.json"
+	],
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/script-shard.d.ts",
+			"default": "./dist/schema/script-shard.js"
+		},
+		"./config": {
+			"types": "./dist/config.d.ts",
+			"default": "./dist/config.js"
+		},
+		"./github": {
+			"types": "./dist/github.d.ts",
+			"default": "./dist/github.js"
+		},
+		"./helpers": {
+			"types": "./dist/helpers.d.ts",
+			"default": "./dist/helpers.js"
+		},
+		"./strategies": {
+			"types": "./dist/strategies.d.ts",
+			"default": "./dist/strategies.js"
+		},
+		"./schema/release-notes": {
+			"types": "./dist/release-notes.d.ts",
+			"default": "./dist/schema/release-notes.js"
+		},
+		"./schema.json": "./src/schema/schema.json",
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"start": "bun run --experimental-http2-fetch src/main.ts",
+		"test:shard": "bun run --experimental-http2-fetch src/test.ts",
+		"build:ext": "tsdown",
+		"fmt": "bun --bun oxfmt",
+		"lint": "bun --bun oxlint --type-check --type-aware",
+		"gen:schema": "bun run src/schema/generate.ts && bun format"
+	},
+	"dependencies": {
+		"@ai-sdk/groq": "3.0.42",
+		"@rcompat/fs": "0.35.1",
+		"@unownplain/anthelion-komac": "0.0.45",
+		"ai": "6.0.208",
+		"ansis": "4.3.1",
+		"es-toolkit": "1.48.1",
+		"ky": "2.0.2",
+		"octokit": "5.0.5",
+		"temporal-polyfill": "1.0.1",
+		"yaml": "2.9.0",
+		"zod": "4.4.3"
+	},
+	"devDependencies": {
+		"@types/bun": "1.3.14",
+		"@typescript/native-preview": "7.0.0-dev.20260624.1",
+		"oxfmt": "0.56.0",
+		"oxlint": "1.71.0",
+		"oxlint-tsgolint": "0.23.0",
+		"tsdown": "0.22.3"
+	},
+	"packageManager": "bun@1.3.14"
+}

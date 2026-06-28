@@ -1,0 +1,92 @@
+import { extname } from "node:path";
+import ky from "ky";
+import { Octokit } from "octokit";
+//#region src/github.ts
+const githubClient = new Octokit({ auth: process.env.GITHUB_TOKEN });
+const INSTALLER_EXTENSIONS = /* @__PURE__ */ new Set([
+	".exe",
+	".msi",
+	".msix",
+	".msixbundle",
+	".appx",
+	".zip"
+]);
+async function getLatestReleaseFromRedirect({ owner, repo, tagIncludes = "" }) {
+	const location = (await ky.head(`https://github.com/${owner}/${repo}/releases/latest`, {
+		redirect: "manual",
+		throwHttpErrors: false
+	})).headers.get("location");
+	if (!location) throw new Error("No GitHub release redirect found");
+	const releaseUrl = new URL(location, "https://github.com");
+	const tag = releaseUrl.pathname.split("/").at(-1);
+	if (!tag) throw new Error(`Unexpected GitHub release redirect: ${releaseUrl.href}`);
+	if (tag === "latest") throw new Error(`GitHub repository has moved: ${releaseUrl.href}`);
+	return {
+		version: tag.replace(/^v/, "").replace(tagIncludes, ""),
+		tag: tag.replace(/^v/, ""),
+		rawTag: tag,
+		title: void 0,
+		assetNames: () => [],
+		urls: () => []
+	};
+}
+async function getLatestRelease(options) {
+	const { owner, repo, kind = "stable", tagIncludes = "", useLatestEndpoint, perPage = 25 } = options;
+	let release;
+	if (useLatestEndpoint) {
+		const { data } = await githubClient.rest.repos.getLatestRelease({
+			owner,
+			repo
+		});
+		release = data;
+	} else {
+		let { data: releases } = await githubClient.rest.repos.listReleases({
+			owner,
+			repo,
+			per_page: perPage
+		});
+		switch (kind) {
+			case "all": break;
+			case "prerelease":
+				releases = releases.filter((release) => release.prerelease);
+				break;
+			case "stable":
+				releases = releases.filter((release) => !release.prerelease);
+				break;
+		}
+		if (tagIncludes) release = releases.find((release) => release.tag_name.includes(tagIncludes));
+		else release = releases[0];
+	}
+	if (!release) throw new Error("No GitHub release found");
+	return {
+		version: release.tag_name.replace(/^v/, "").replace(tagIncludes, ""),
+		tag: release.tag_name.replace(/^v/, ""),
+		rawTag: release.tag_name,
+		title: release.name,
+		assetNames: () => release.assets.map((asset) => asset.name),
+		urls: () => release.assets.filter((asset) => INSTALLER_EXTENSIONS.has(extname(asset.name))).map((asset) => asset.browser_download_url)
+	};
+}
+async function getReleaseByTag(options) {
+	const { owner, repo, tag } = options;
+	const { data } = await githubClient.rest.repos.getReleaseByTag({
+		owner,
+		repo,
+		tag
+	});
+	return data;
+}
+async function getRepositoryHeadSha() {
+	const repository = process.env.GITHUB_REPOSITORY;
+	if (!repository) throw new Error("Missing GITHUB_REPOSITORY environment variable");
+	const [owner, repo] = repository.split("/");
+	if (!owner || !repo) throw new Error("Invalid GITHUB_REPOSITORY format; expected owner/repo");
+	const { data } = await githubClient.rest.repos.getCommit({
+		owner,
+		repo,
+		ref: "HEAD"
+	});
+	return data.sha;
+}
+//#endregion
+export { getLatestRelease, getLatestReleaseFromRedirect, getReleaseByTag, getRepositoryHeadSha, githubClient };
