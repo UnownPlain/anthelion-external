@@ -55,11 +55,9 @@ jobs:
 
       - name: Update build output
         run: |
-          rm -rf dist src package.json
-          mkdir -p src/schema
+          rm -rf dist package.json
           cp -R upstream/dist .
           cp upstream/package.json .
-          cp upstream/src/schema/schema.json src/schema/
 
       - name: Commit and push
         run: |
