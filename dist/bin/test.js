@@ -937,7 +937,6 @@ async function runAllShards(testShards, shardsDirectory = getShardsDirectory()) 
 	console.log(completed);
 	return failures.length;
 }
-if (import.meta.main) await runAllShards();
 //#endregion
 //#region src/test.ts
 const args = process.argv.slice(2);
