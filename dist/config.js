@@ -1,14 +1,1 @@
-import { resolve } from "node:path";
-//#region src/config.ts
-function getShardsDirectory() {
-	return resolve(process.env.ANTHELION_SHARDS_DIR || "shards");
-}
-function getTargetRepository() {
-	return {
-		owner: process.env.KOMAC_GITHUB_OWNER || "microsoft",
-		repo: process.env.KOMAC_GITHUB_REPO || "winget-pkgs",
-		branch: process.env.ANTHELION_GITHUB_BRANCH || "master"
-	};
-}
-//#endregion
-export { getShardsDirectory, getTargetRepository };
+import{resolve as e}from"node:path";function t(){return e(process.env.ANTHELION_SHARDS_DIR||`shards`)}function n(){return{owner:process.env.KOMAC_GITHUB_OWNER||`microsoft`,repo:process.env.KOMAC_GITHUB_REPO||`winget-pkgs`,branch:process.env.ANTHELION_GITHUB_BRANCH||`master`}}export{t as getShardsDirectory,n as getTargetRepository};
