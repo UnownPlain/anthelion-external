@@ -17,12 +17,16 @@ declare class Logger {
 }
 declare function compareVersions(a: string, b: string): number;
 declare function vs(str: unknown): string;
+declare function getShardTarget(shardName: string): {
+  packageIdentifier: string;
+  font: boolean;
+};
 declare function get(obj: unknown, path: string, defaultValue?: unknown): unknown;
 declare function isHttpUrl(value: string): boolean;
 declare function resolveValuePlaceholders(template: string, values: Record<string, unknown>): string;
 declare function match(str: string | undefined, regex: RegExp): string[];
 declare function isStateMatching(packageIdentifier: string, newState: string): Promise<boolean | undefined>;
-declare function checkVersionInRepo(version: string, packageIdentifier: string, logger?: Logger): Promise<boolean | undefined>;
+declare function checkVersionInRepo(version: string, packageIdentifier: string, logger?: Logger, font?: boolean): Promise<boolean | undefined>;
 declare function closeAllButMostRecentPR(packageIdentifier: string): Promise<void>;
 declare function updateVersionState(packageIdentifier: string, latestVersion: string): Promise<void>;
 declare function normalizeVersion(version: string, remove?: string): string;
@@ -31,4 +35,4 @@ declare function firstMatch(str: string, regex: RegExp, errorMessage: string): s
 type TemplateValue = string | number | bigint | boolean | null | undefined;
 declare function dedent(strings: TemplateStringsArray, ...values: TemplateValue[]): string;
 //#endregion
-export { Logger, checkVersionInRepo, closeAllButMostRecentPR, compareVersions, dedent, firstMatch, get, isHttpUrl, isStateMatching, match, normalizeVersion, resolveDataBackedUrls, resolveValuePlaceholders, updateVersionState, vs };
+export { Logger, checkVersionInRepo, closeAllButMostRecentPR, compareVersions, dedent, firstMatch, get, getShardTarget, isHttpUrl, isStateMatching, match, normalizeVersion, resolveDataBackedUrls, resolveValuePlaceholders, updateVersionState, vs };
