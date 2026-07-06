@@ -70,6 +70,7 @@ declare const ScriptShardResult: z.ZodUnion<readonly [z.ZodObject<{
   }, z.core.$strict>]>>;
   replace: z.ZodOptional<z.ZodBoolean>;
   skipPrCheck: z.ZodDefault<z.ZodBoolean>;
+  ignoreOtherPrs: z.ZodDefault<z.ZodBoolean>;
   installerMatches: z.ZodOptional<z.ZodArray<z.ZodString>>;
   version: z.ZodPipe<z.ZodCustom<() => string | undefined, () => string | undefined>, z.ZodTransform<() => string, () => string | undefined>>;
   state: z.ZodString;
@@ -139,6 +140,7 @@ declare const ScriptShardResult: z.ZodUnion<readonly [z.ZodObject<{
   }, z.core.$strict>]>>;
   replace: z.ZodOptional<z.ZodBoolean>;
   skipPrCheck: z.ZodDefault<z.ZodBoolean>;
+  ignoreOtherPrs: z.ZodDefault<z.ZodBoolean>;
   installerMatches: z.ZodOptional<z.ZodArray<z.ZodString>>;
   version: z.ZodPipe<z.ZodOptional<z.ZodString>, z.ZodTransform<string, string | undefined>>;
   state: z.ZodOptional<z.ZodUndefined>;
