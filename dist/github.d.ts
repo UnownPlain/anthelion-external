@@ -16,11 +16,7 @@ type LatestReleaseOptions = GitHubRepository & {
   useLatestEndpoint?: boolean;
   perPage?: number;
 };
-declare function getLatestReleaseFromRedirect({
-  owner,
-  repo,
-  tagIncludes
-}: GitHubRepository & {
+declare function getLatestReleaseFromRedirect({ owner, repo, tagIncludes }: GitHubRepository & {
   tagIncludes?: string;
 }): Promise<{
   version: string;

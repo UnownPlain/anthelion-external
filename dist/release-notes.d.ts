@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 //#region src/schema/release-notes.d.ts
 declare enum ReleaseNotesSource {
   Html = "html",

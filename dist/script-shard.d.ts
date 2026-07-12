@@ -1,6 +1,5 @@
 import { ReleaseNotesSource } from "./release-notes.js";
 import { z } from "zod";
-
 //#region src/schema/script-shard.d.ts
 declare const urlsSchema: z.ZodPipe<z.ZodUnion<readonly [z.ZodArray<z.ZodPipe<z.ZodOptional<z.ZodNullable<z.ZodString>>, z.ZodTransform<string, string | null | undefined>>>, z.ZodCustom<() => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined, () => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined>]>, z.ZodTransform<(() => Promise<string[]>) | (() => string[]), string[] | (() => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined)>>;
 type Urls = z.output<typeof urlsSchema>;

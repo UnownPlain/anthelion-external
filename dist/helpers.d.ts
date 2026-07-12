@@ -1,5 +1,4 @@
 import { ExistingPullRequestResult, UpdateVersionResult } from "@unownplain/anthelion-komac";
-
 //#region src/helpers.d.ts
 declare class Logger {
   private logs;
