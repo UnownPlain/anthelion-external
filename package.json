@@ -42,19 +42,11 @@
 		},
 		"./package.json": "./package.json"
 	},
-	"scripts": {
-		"start": "bun run --experimental-http2-fetch src/main.ts",
-		"test:shard": "bun run --experimental-http2-fetch src/test.ts",
-		"build:ext": "tsdown",
-		"fmt": "bun --bun oxfmt",
-		"lint": "bun --bun oxlint --type-check --type-aware",
-		"gen:schema": "bun run src/schema/generate.ts && bun format"
-	},
 	"dependencies": {
-		"@ai-sdk/groq": "4.0.5",
+		"@ai-sdk/groq": "4.0.7",
 		"@rcompat/fs": "0.35.1",
-		"@unownplain/anthelion-komac": "0.0.48",
-		"ai": "7.0.14",
+		"@unownplain/anthelion-komac": "0.0.50",
+		"ai": "7.0.19",
 		"ansis": "4.3.1",
 		"es-toolkit": "1.49.0",
 		"ky": "2.0.2",
@@ -62,14 +54,5 @@
 		"temporal-polyfill": "1.0.1",
 		"yaml": "2.9.0",
 		"zod": "4.4.3"
-	},
-	"devDependencies": {
-		"@types/bun": "1.3.14",
-		"@typescript/native-preview": "7.0.0-dev.20260702.3",
-		"oxfmt": "0.58.0",
-		"oxlint": "1.73.0",
-		"oxlint-tsgolint": "0.24.0",
-		"tsdown": "0.22.4"
-	},
-	"packageManager": "bun@1.3.14"
+	}
 }
