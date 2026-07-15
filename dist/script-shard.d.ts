@@ -1,10 +1,10 @@
 import { ReleaseNotesSource } from "./release-notes.js";
 import { z } from "zod";
 //#region src/schema/script-shard.d.ts
-declare const urlsSchema: z.ZodPipe<z.ZodUnion<readonly [z.ZodArray<z.ZodPipe<z.ZodOptional<z.ZodNullable<z.ZodString>>, z.ZodTransform<string, string | null | undefined>>>, z.ZodCustom<() => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined, () => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined>]>, z.ZodTransform<(() => Promise<string[]>) | (() => string[]), string[] | (() => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined)>>;
+declare const urlsSchema: z.ZodPipe<z.ZodUnion<readonly [z.ZodPipe<z.ZodArray<z.ZodUnknown>, z.ZodArray<z.ZodString>>, z.ZodCustom<() => unknown[] | Promise<unknown[]> | undefined, () => unknown[] | Promise<unknown[]> | undefined>]>, z.ZodTransform<(() => Promise<string[]>) | (() => string[]), string[] | (() => unknown[] | Promise<unknown[]> | undefined)>>;
 type Urls = z.output<typeof urlsSchema>;
 declare const ScriptShardResult: z.ZodUnion<readonly [z.ZodObject<{
-  urls: z.ZodPipe<z.ZodUnion<readonly [z.ZodArray<z.ZodPipe<z.ZodOptional<z.ZodNullable<z.ZodString>>, z.ZodTransform<string, string | null | undefined>>>, z.ZodCustom<() => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined, () => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined>]>, z.ZodTransform<(() => Promise<string[]>) | (() => string[]), string[] | (() => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined)>>;
+  urls: z.ZodPipe<z.ZodUnion<readonly [z.ZodPipe<z.ZodArray<z.ZodUnknown>, z.ZodArray<z.ZodString>>, z.ZodCustom<() => unknown[] | Promise<unknown[]> | undefined, () => unknown[] | Promise<unknown[]> | undefined>]>, z.ZodTransform<(() => Promise<string[]>) | (() => string[]), string[] | (() => unknown[] | Promise<unknown[]> | undefined)>>;
   releaseNotes: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
     source: z.ZodLiteral<ReleaseNotesSource.Html>;
     sourceUrl: z.ZodString;
@@ -71,10 +71,10 @@ declare const ScriptShardResult: z.ZodUnion<readonly [z.ZodObject<{
   skipPrCheck: z.ZodDefault<z.ZodBoolean>;
   ignoreOtherPrs: z.ZodDefault<z.ZodBoolean>;
   installerMatches: z.ZodOptional<z.ZodArray<z.ZodString>>;
-  version: z.ZodPipe<z.ZodCustom<() => string | undefined, () => string | undefined>, z.ZodTransform<() => string, () => string | undefined>>;
+  version: z.ZodPipe<z.ZodCustom<() => unknown, () => unknown>, z.ZodTransform<() => string, () => unknown>>;
   state: z.ZodString;
 }, z.core.$strip>, z.ZodObject<{
-  urls: z.ZodPipe<z.ZodUnion<readonly [z.ZodArray<z.ZodPipe<z.ZodOptional<z.ZodNullable<z.ZodString>>, z.ZodTransform<string, string | null | undefined>>>, z.ZodCustom<() => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined, () => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined>]>, z.ZodTransform<(() => Promise<string[]>) | (() => string[]), string[] | (() => Array<string | null | undefined> | Promise<Array<string | null | undefined>> | undefined)>>;
+  urls: z.ZodPipe<z.ZodUnion<readonly [z.ZodPipe<z.ZodArray<z.ZodUnknown>, z.ZodArray<z.ZodString>>, z.ZodCustom<() => unknown[] | Promise<unknown[]> | undefined, () => unknown[] | Promise<unknown[]> | undefined>]>, z.ZodTransform<(() => Promise<string[]>) | (() => string[]), string[] | (() => unknown[] | Promise<unknown[]> | undefined)>>;
   releaseNotes: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
     source: z.ZodLiteral<ReleaseNotesSource.Html>;
     sourceUrl: z.ZodString;
@@ -141,7 +141,7 @@ declare const ScriptShardResult: z.ZodUnion<readonly [z.ZodObject<{
   skipPrCheck: z.ZodDefault<z.ZodBoolean>;
   ignoreOtherPrs: z.ZodDefault<z.ZodBoolean>;
   installerMatches: z.ZodOptional<z.ZodArray<z.ZodString>>;
-  version: z.ZodPipe<z.ZodOptional<z.ZodString>, z.ZodTransform<string, string | undefined>>;
+  version: z.ZodPipe<z.ZodUnknown, z.ZodTransform<string, unknown>>;
   state: z.ZodOptional<z.ZodUndefined>;
 }, z.core.$strip>]>;
 type ScriptShardResultInput = z.input<typeof ScriptShardResult>;

@@ -30,7 +30,7 @@ declare function closeAllButMostRecentPR(packageIdentifier: string): Promise<voi
 declare function updateVersionState(packageIdentifier: string, latestVersion: string): Promise<void>;
 declare function normalizeVersion(version: string, remove?: string): string;
 declare function resolveDataBackedUrls(urls: string[], data: unknown): string[];
-declare function firstMatch(str: string, regex: RegExp, errorMessage: string): string;
+declare function firstMatch(str: string, regex: RegExp, errorMessage?: string): string;
 type TemplateValue = string | number | bigint | boolean | null | undefined;
 declare function dedent(strings: TemplateStringsArray, ...values: TemplateValue[]): string;
 //#endregion
