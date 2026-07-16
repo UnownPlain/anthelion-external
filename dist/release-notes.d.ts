@@ -78,5 +78,6 @@ declare const releaseNotesSchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscri
   releaseNotesUrl: z.ZodString;
 }, z.core.$strict>]>>;
 type ReleaseNotesInput = z.input<typeof releaseNotesSchema>;
+type ReleaseNotesConfig = z.output<typeof releaseNotesSchema>;
 //#endregion
-export { NestedReleaseNotesSource, ReleaseNotesInput, ReleaseNotesSource, releaseNotesSchema };
+export { NestedReleaseNotesSource, ReleaseNotesConfig, ReleaseNotesInput, ReleaseNotesSource, releaseNotesSchema };
