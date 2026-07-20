@@ -64,5 +64,6 @@ declare function getReleaseByTag(options: GitHubRepository & {
   reactions?: import("@octokit/openapi-types").components["schemas"]["reaction-rollup"];
 }>;
 declare function getRepositoryHeadSha(): Promise<string>;
+declare function closeAllButMostRecentPR(packageIdentifier: string): Promise<void>;
 //#endregion
-export { getLatestRelease, getLatestReleaseFromRedirect, getReleaseByTag, getRepositoryHeadSha, githubClient };
+export { closeAllButMostRecentPR, getLatestRelease, getLatestReleaseFromRedirect, getReleaseByTag, getRepositoryHeadSha, githubClient };
