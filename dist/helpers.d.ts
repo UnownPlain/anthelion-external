@@ -24,7 +24,7 @@ declare function get(obj: unknown, path: string, defaultValue?: unknown): unknow
 declare function isHttpUrl(value: string): boolean;
 declare function resolveValuePlaceholders(template: string, values: Record<string, unknown>): string;
 declare function match(str: string | undefined, regex: RegExp): string[];
-declare function isStateMatching(packageIdentifier: string, newState: string): Promise<boolean | undefined>;
+declare function isStateMatching(packageIdentifier: string, newState: string, ignoreQuotes?: boolean): Promise<boolean | undefined>;
 declare function checkVersionInRepo(version: string, packageIdentifier: string, logger?: Logger, font?: boolean, ignoreOtherPrs?: boolean): Promise<boolean>;
 declare function updateVersionState(packageIdentifier: string, latestVersion: string): Promise<void>;
 declare function normalizeVersion(version: string, remove?: string): string;
