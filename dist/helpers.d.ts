@@ -1,16 +1,17 @@
-import { ExistingPullRequestResult, UpdateVersionResult } from "@unownplain/anthelion-komac";
+import { Komac, PullRequest, UpdatePackageRequest, UpdatePackageResult } from "@unownplain/anthelion-komac";
 //#region src/helpers.d.ts
+declare const komac: Komac;
 declare class Logger {
   private logs;
   log(line: string): void;
   blankLine(): void;
-  logUpdateResult(result: UpdateVersionResult): void;
+  logUpdateResult(result: UpdatePackageResult): void;
   stateMatches(): void;
   flush(): void;
   run(shard: string): void;
   duration(shard: string, milliseconds: number): void;
   present(version: string): void;
-  prExists(pr: ExistingPullRequestResult): void;
+  prExists(pr: PullRequest): void;
   error(shard: string, error: unknown): void;
   details(version: string, urls: string[]): void;
 }
@@ -23,14 +24,18 @@ declare function getShardTarget(shardName: string): {
 declare function get(obj: unknown, path: string, defaultValue?: unknown): unknown;
 declare function isHttpUrl(value: string): boolean;
 declare function resolveValuePlaceholders(template: string, values: Record<string, unknown>): string;
-declare function match(str: string | undefined, regex: RegExp): string[];
+declare function match(str: unknown, regex: RegExp): string[];
 declare function isStateMatching(packageIdentifier: string, newState: string, ignoreQuotes?: boolean): Promise<boolean | undefined>;
 declare function checkVersionInRepo(version: string, packageIdentifier: string, logger?: Logger, font?: boolean, ignoreOtherPrs?: boolean): Promise<boolean>;
 declare function updateVersionState(packageIdentifier: string, latestVersion: string): Promise<void>;
 declare function normalizeVersion(version: string, remove?: string): string;
-declare function resolveDataBackedUrls(urls: string[], data: unknown): string[];
+declare function resolveDataBackedUrls(installers: UpdatePackageRequest['installers'], data: unknown): (string | {
+  architecture?: 'x86' | 'x64' | 'arm' | 'arm64' | 'neutral';
+  nestedInstallerMatches?: Array<string>;
+  url: string;
+})[];
 declare function firstMatch(str: string, regex: RegExp, errorMessage?: string): string;
 type TemplateValue = string | number | bigint | boolean | null | undefined;
 declare function dedent(strings: TemplateStringsArray, ...values: TemplateValue[]): string;
 //#endregion
-export { Logger, checkVersionInRepo, compareVersions, dedent, firstMatch, get, getShardTarget, isHttpUrl, isStateMatching, match, normalizeVersion, resolveDataBackedUrls, resolveValuePlaceholders, updateVersionState, vs };
+export { Logger, checkVersionInRepo, compareVersions, dedent, firstMatch, get, getShardTarget, isHttpUrl, isStateMatching, komac, match, normalizeVersion, resolveDataBackedUrls, resolveValuePlaceholders, updateVersionState, vs };
