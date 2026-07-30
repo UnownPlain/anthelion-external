@@ -54,11 +54,12 @@ jobs:
           bun build:ext
 
       - name: Update build output
+        working-directory: upstream
         run: |
-          rm -rf dist package.json
-          cp -R upstream/dist .
-          cp upstream/package.json .
+          rm -rf ../dist ../package.json
+          cp -R dist ..
           bun pm pkg delete devDependencies scripts packageManager
+          cp package.json ..
 
       - name: Commit and push
         run: |
