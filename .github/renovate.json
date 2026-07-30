@@ -7,7 +7,7 @@
 			"automerge": true
 		},
 		{
-			"matchPackageNames": ["jdx/mise"],
+			"matchPackageNames": ["mise"],
 			"minimumReleaseAge": "3 days"
 		},
 		{
@@ -17,19 +17,5 @@
 	],
 	"npm": {
 		"enabled": false
-	},
-	"customManagers": [
-		{
-			"customType": "regex",
-			"managerFilePatterns": ["/(^|/)\\.github/workflows/[^/]+\\.ya?ml$/"],
-			"depNameTemplate": "mise",
-			"packageNameTemplate": "jdx/mise",
-			"datasourceTemplate": "github-releases",
-			"versioningTemplate": "semver",
-			"extractVersionTemplate": "^v(?<version>.*)$",
-			"matchStrings": [
-				"uses:\\s+jdx/mise-action@[^\\s#]+(?:\\s+#[^\\r\\n]*)?\\r?\\n\\s+with:\\r?\\n\\s+version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)"
-			]
-		}
-	]
+	}
 }
