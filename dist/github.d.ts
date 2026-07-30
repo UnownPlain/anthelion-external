@@ -16,6 +16,11 @@ type LatestReleaseOptions = GitHubRepository & {
   useLatestEndpoint?: boolean;
   perPage?: number;
 };
+type LatestFileCommitOptions = GitHubRepository & {
+  branch?: string;
+  path: string;
+};
+declare function getLatestFileCommit({ owner, repo, branch, path }: LatestFileCommitOptions): Promise<string>;
 declare function getLatestReleaseFromRedirect({ owner, repo, tagIncludes }: GitHubRepository & {
   tagIncludes?: string;
 }): Promise<{
@@ -66,4 +71,4 @@ declare function getReleaseByTag(options: GitHubRepository & {
 declare function getRepositoryHeadSha(): Promise<string>;
 declare function closeAllButMostRecentPR(packageIdentifier: string): Promise<void>;
 //#endregion
-export { closeAllButMostRecentPR, getLatestRelease, getLatestReleaseFromRedirect, getReleaseByTag, getRepositoryHeadSha, githubClient };
+export { closeAllButMostRecentPR, getLatestFileCommit, getLatestRelease, getLatestReleaseFromRedirect, getReleaseByTag, getRepositoryHeadSha, githubClient };
