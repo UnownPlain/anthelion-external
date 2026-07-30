@@ -79,12 +79,10 @@ declare const ScriptShardResult: z.ZodObject<{
   skipPrCheck: z.ZodDefault<z.ZodBoolean>;
   ignoreOtherPrs: z.ZodDefault<z.ZodBoolean>;
   version: z.ZodPipe<z.ZodUnknown, z.ZodUnion<readonly [z.ZodString, z.ZodObject<{
-    source: z.ZodLiteral<"explicit">;
-    value: z.ZodString;
-  }, z.core.$strip>, z.ZodObject<{
     source: z.ZodEnum<{
       display: "display";
       file: "file";
+      fontVersion: "fontVersion";
       product: "product";
     }>;
   }, z.core.$strip>]>>;
