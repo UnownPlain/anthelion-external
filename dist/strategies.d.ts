@@ -16,11 +16,15 @@ declare function pageMatch(options: MatchStrategyOptions): Promise<{
     [key: string]: string;
   };
 }>;
-declare function redirectMatch(options: MatchStrategyOptions & {
+declare function redirectMatch(options: Omit<MatchStrategyOptions, 'url'> & {
+  url: string[];
   method?: 'head' | 'get';
 }): Promise<{
   version: string;
-  url: string;
+  urls: string[];
+  captures: {
+    [key: string]: string;
+  };
 }>;
 declare function sortVersions(options: MatchStrategyOptions): Promise<VersionStrategyResult>;
 declare function sourceforge(options: {
