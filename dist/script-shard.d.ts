@@ -1,18 +1,23 @@
 import { ReleaseNotesSource } from "./release-notes.js";
 import { z } from "zod";
 //#region src/schema/script-shard.d.ts
-declare const urlsSchema: z.ZodPipe<z.ZodFunction<z.ZodTuple<readonly [], null>, z.ZodUnknown>, z.ZodTransform<() => Promise<(string | {
+type UrlsReturnInput = unknown[] | {
+  url: unknown;
+  architecture?: unknown;
+  nestedInstallerMatches?: unknown;
+};
+declare const urlsSchema: z.ZodPipe<z.ZodFunction<z.ZodTuple<readonly [], null>, z.ZodCustom<PromiseLike<UrlsReturnInput> | UrlsReturnInput, PromiseLike<UrlsReturnInput> | UrlsReturnInput>>, z.ZodTransform<() => Promise<(string | {
   url: string;
   architecture?: "arm" | "arm64" | "neutral" | "x64" | "x86" | undefined;
   nestedInstallerMatches?: string[] | undefined;
-})[]>, z.core.$InferOuterFunctionType<z.ZodTuple<readonly [], null>, z.ZodUnknown>>>;
+})[]>, z.core.$InferOuterFunctionType<z.ZodTuple<readonly [], null>, z.ZodCustom<PromiseLike<UrlsReturnInput> | UrlsReturnInput, PromiseLike<UrlsReturnInput> | UrlsReturnInput>>>>;
 type Urls = z.output<typeof urlsSchema>;
 declare const ScriptShardResult: z.ZodObject<{
-  urls: z.ZodPipe<z.ZodFunction<z.ZodTuple<readonly [], null>, z.ZodUnknown>, z.ZodTransform<() => Promise<(string | {
+  urls: z.ZodPipe<z.ZodFunction<z.ZodTuple<readonly [], null>, z.ZodCustom<PromiseLike<UrlsReturnInput> | UrlsReturnInput, PromiseLike<UrlsReturnInput> | UrlsReturnInput>>, z.ZodTransform<() => Promise<(string | {
     url: string;
     architecture?: "arm" | "arm64" | "neutral" | "x64" | "x86" | undefined;
     nestedInstallerMatches?: string[] | undefined;
-  })[]>, z.core.$InferOuterFunctionType<z.ZodTuple<readonly [], null>, z.ZodUnknown>>>;
+  })[]>, z.core.$InferOuterFunctionType<z.ZodTuple<readonly [], null>, z.ZodCustom<PromiseLike<UrlsReturnInput> | UrlsReturnInput, PromiseLike<UrlsReturnInput> | UrlsReturnInput>>>>;
   releaseNotes: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
     source: z.ZodLiteral<ReleaseNotesSource.Html>;
     sourceUrl: z.ZodString;
