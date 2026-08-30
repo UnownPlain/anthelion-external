@@ -1,14 +1,53 @@
 //#region src/strategies.d.ts
 type MatchStrategyOptions = {
   url: string;
-  regex: string | RegExp;
-};
-type VersionStrategyResult = {
-  version: string;
+  regex: RegExp;
 };
 declare function electronBuilder(options: {
   url: string;
-}): Promise<VersionStrategyResult>;
+}): Promise<{
+  version: string;
+  urls: string[];
+}>;
+declare function tauri(options: {
+  url: string;
+  platforms?: string[];
+}): Promise<{
+  version: string;
+  urls: string[];
+  data: {
+    version: string;
+    platforms: Record<string, {
+      url: string;
+    }>;
+  };
+}>;
+declare function toDesktop(options: {
+  appId: string;
+}): Promise<{
+  version: string;
+  urls: string[];
+  data: {
+    version: string;
+    artifacts: Record<string, unknown>;
+  };
+}>;
+declare function msDownloadCenter(options: {
+  id: number;
+  regex?: RegExp;
+}): Promise<{
+  version: string;
+  urls: string[];
+  data: {
+    dlcDetailsView: {
+      downloadFile: {
+        name: string;
+        url: string;
+        version: string;
+      }[];
+    };
+  };
+}>;
 declare function pageMatch(options: MatchStrategyOptions): Promise<{
   version: string;
   groups: [string, ...string[]];
@@ -26,10 +65,14 @@ declare function redirectMatch(options: Omit<MatchStrategyOptions, 'url'> & {
     [key: string]: string;
   };
 }>;
-declare function sortVersions(options: MatchStrategyOptions): Promise<VersionStrategyResult>;
+declare function sortVersions(options: MatchStrategyOptions): Promise<{
+  version: string;
+}>;
 declare function sourceforge(options: {
   project: string;
   file?: string;
-}): Promise<VersionStrategyResult>;
+}): Promise<{
+  version: string;
+}>;
 //#endregion
-export { MatchStrategyOptions, VersionStrategyResult, electronBuilder, pageMatch, redirectMatch, sortVersions, sourceforge };
+export { MatchStrategyOptions, electronBuilder, msDownloadCenter, pageMatch, redirectMatch, sortVersions, sourceforge, tauri, toDesktop };
