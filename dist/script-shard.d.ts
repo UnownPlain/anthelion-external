@@ -6,13 +6,13 @@ type UrlsReturnInput = unknown[] | {
   architecture?: unknown;
   nestedInstallerMatches?: unknown;
 };
-declare const urlsSchema: z.ZodPipe<z.ZodFunction<z.ZodTuple<readonly [], null>, z.ZodCustom<PromiseLike<UrlsReturnInput> | UrlsReturnInput, PromiseLike<UrlsReturnInput> | UrlsReturnInput>>, z.ZodTransform<() => Promise<(string | {
+export declare const urlsSchema: z.ZodPipe<z.ZodFunction<z.ZodTuple<readonly [], null>, z.ZodCustom<PromiseLike<UrlsReturnInput> | UrlsReturnInput, PromiseLike<UrlsReturnInput> | UrlsReturnInput>>, z.ZodTransform<() => Promise<(string | {
   url: string;
   architecture?: "arm" | "arm64" | "neutral" | "x64" | "x86" | undefined;
   nestedInstallerMatches?: string[] | undefined;
 })[]>, z.core.$InferOuterFunctionType<z.ZodTuple<readonly [], null>, z.ZodCustom<PromiseLike<UrlsReturnInput> | UrlsReturnInput, PromiseLike<UrlsReturnInput> | UrlsReturnInput>>>>;
-type Urls = z.output<typeof urlsSchema>;
-declare const ScriptShardResult: z.ZodObject<{
+export type Urls = z.output<typeof urlsSchema>;
+export declare const ScriptShardResult: z.ZodObject<{
   urls: z.ZodPipe<z.ZodFunction<z.ZodTuple<readonly [], null>, z.ZodCustom<PromiseLike<UrlsReturnInput> | UrlsReturnInput, PromiseLike<UrlsReturnInput> | UrlsReturnInput>>, z.ZodTransform<() => Promise<(string | {
     url: string;
     architecture?: "arm" | "arm64" | "neutral" | "x64" | "x86" | undefined;
@@ -93,9 +93,8 @@ declare const ScriptShardResult: z.ZodObject<{
   }, z.core.$strip>]>>;
   state: z.ZodOptional<z.ZodPipe<z.ZodUnknown, z.ZodString>>;
 }, z.core.$strip>;
-type ScriptShardResultInput = z.input<typeof ScriptShardResult>;
-type ScriptShard = () => Promise<ScriptShardResultInput>;
+export type ScriptShardResultInput = z.input<typeof ScriptShardResult>;
+export type ScriptShard = () => Promise<ScriptShardResultInput>;
 type Exact<Actual, Expected> = Actual extends Expected ? Actual & Record<Exclude<keyof Actual, keyof Expected>, never> : never;
-declare function defineShard<const Result extends ScriptShardResultInput>(shard: () => Promise<Exact<Result, ScriptShardResultInput>>): typeof shard;
+export declare function defineShard<const Result extends ScriptShardResultInput>(shard: () => Promise<Exact<Result, ScriptShardResultInput>>): typeof shard;
 //#endregion
-export { ScriptShard, ScriptShardResult, ScriptShardResultInput, Urls, defineShard, urlsSchema };

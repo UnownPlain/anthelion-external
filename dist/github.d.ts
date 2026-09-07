@@ -1,5 +1,5 @@
 //#region src/github.d.ts
-declare const githubClient: import("@octokit/core").Octokit & {
+export declare const githubClient: import("@octokit/core").Octokit & {
   paginate: import("@octokit/plugin-paginate-rest").PaginateInterface;
 } & import("@octokit/plugin-paginate-graphql").paginateGraphQLInterface & import("@octokit/plugin-rest-endpoint-methods").Api & {
   retry: {
@@ -20,8 +20,8 @@ type LatestFileCommitOptions = GitHubRepository & {
   branch?: string;
   path: string;
 };
-declare function getLatestFileCommit({ owner, repo, branch, path }: LatestFileCommitOptions): Promise<string>;
-declare function getLatestReleaseFromRedirect({ owner, repo, tagIncludes }: GitHubRepository & {
+export declare function getLatestFileCommit({ owner, repo, branch, path }: LatestFileCommitOptions): Promise<string>;
+export declare function getLatestReleaseFromRedirect({ owner, repo, tagIncludes }: GitHubRepository & {
   tagIncludes?: string;
 }): Promise<{
   version: string;
@@ -31,7 +31,7 @@ declare function getLatestReleaseFromRedirect({ owner, repo, tagIncludes }: GitH
   assetNames: () => never[];
   urls: () => never[];
 }>;
-declare function getLatestRelease(options: LatestReleaseOptions): Promise<{
+export declare function getLatestRelease(options: LatestReleaseOptions): Promise<{
   version: string;
   tag: string;
   rawTag: string;
@@ -39,7 +39,7 @@ declare function getLatestRelease(options: LatestReleaseOptions): Promise<{
   assetNames: () => string[];
   urls: () => string[];
 }>;
-declare function getReleaseByTag(options: GitHubRepository & {
+export declare function getReleaseByTag(options: GitHubRepository & {
   tag: string;
 }): Promise<{
   url: string;
@@ -68,7 +68,6 @@ declare function getReleaseByTag(options: GitHubRepository & {
   discussion_url?: string;
   reactions?: import("@octokit/openapi-types").components["schemas"]["reaction-rollup"];
 }>;
-declare function getRepositoryHeadSha(): Promise<string>;
-declare function closeAllButMostRecentPR(packageIdentifier: string): Promise<void>;
+export declare function getRepositoryHeadSha(): Promise<string>;
+export declare function closeAllButMostRecentPR(packageIdentifier: string): Promise<void>;
 //#endregion
-export { closeAllButMostRecentPR, getLatestFileCommit, getLatestRelease, getLatestReleaseFromRedirect, getReleaseByTag, getRepositoryHeadSha, githubClient };

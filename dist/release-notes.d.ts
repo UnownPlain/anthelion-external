@@ -1,6 +1,6 @@
 import { z } from "zod";
 //#region src/schema/release-notes.d.ts
-declare enum ReleaseNotesSource {
+export declare enum ReleaseNotesSource {
   Html = "html",
   Markdown = "markdown",
   PlainText = "plain-text",
@@ -14,8 +14,8 @@ declare const releaseNotesNestedSourceSchema: z.ZodEnum<{
   markdown: ReleaseNotesSource.Markdown;
   "plain-text": ReleaseNotesSource.PlainText;
 }>;
-type NestedReleaseNotesSource = z.infer<typeof releaseNotesNestedSourceSchema>;
-declare const releaseNotesSchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
+export type NestedReleaseNotesSource = z.infer<typeof releaseNotesNestedSourceSchema>;
+export declare const releaseNotesSchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
   source: z.ZodLiteral<ReleaseNotesSource.Html>;
   sourceUrl: z.ZodString;
   releaseNotesUrl: z.ZodOptional<z.ZodString>;
@@ -77,7 +77,7 @@ declare const releaseNotesSchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscri
 }, z.core.$strip>], "source">, z.ZodObject<{
   releaseNotesUrl: z.ZodString;
 }, z.core.$strict>]>>;
-declare const releaseNotesWithRequiredGithubRepositorySchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
+export declare const releaseNotesWithRequiredGithubRepositorySchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
   source: z.ZodLiteral<ReleaseNotesSource.Html>;
   sourceUrl: z.ZodString;
   releaseNotesUrl: z.ZodOptional<z.ZodString>;
@@ -139,7 +139,6 @@ declare const releaseNotesWithRequiredGithubRepositorySchema: z.ZodOptional<z.Zo
 }, z.core.$strip>], "source">, z.ZodObject<{
   releaseNotesUrl: z.ZodString;
 }, z.core.$strict>]>>;
-type ReleaseNotesInput = z.input<typeof releaseNotesSchema>;
-type ReleaseNotesConfig = z.output<typeof releaseNotesSchema>;
+export type ReleaseNotesInput = z.input<typeof releaseNotesSchema>;
+export type ReleaseNotesConfig = z.output<typeof releaseNotesSchema>;
 //#endregion
-export { NestedReleaseNotesSource, ReleaseNotesConfig, ReleaseNotesInput, ReleaseNotesSource, releaseNotesSchema, releaseNotesWithRequiredGithubRepositorySchema };
