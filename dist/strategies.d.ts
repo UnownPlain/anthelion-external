@@ -3,6 +3,28 @@ export type MatchStrategyOptions = {
   url: string;
   regex: RegExp;
 };
+export declare function json(options: {
+  url: string;
+  path: string;
+  method?: 'get' | 'post';
+  body?: unknown;
+}): Promise<{
+  version: string;
+  data: unknown;
+}>;
+export declare function xml(options: {
+  url: string;
+  path: string;
+}): Promise<{
+  version: string;
+  data: Record<string, any>;
+}>;
+export declare function appinstaller(options: {
+  url: string | string[];
+}): Promise<{
+  version: string;
+  urls: string[];
+}>;
 export declare function electronBuilder(options: {
   url: string;
 }): Promise<{
