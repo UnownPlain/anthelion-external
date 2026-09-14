@@ -43,15 +43,15 @@
 		"./package.json": "./package.json"
 	},
 	"dependencies": {
-		"@ai-sdk/groq": "4.0.37",
+		"@ai-sdk/groq": "4.0.40",
 		"@rcompat/fs": "0.35.1",
 		"@unownplain/anthelion-komac": "0.0.65",
-		"ai": "7.0.92",
+		"ai": "7.0.97",
 		"ansis": "4.3.1",
 		"es-toolkit": "1.52.0",
 		"ky": "2.1.0",
 		"octokit": "5.0.5",
 		"txml": "6.0.3",
-		"zod": "4.6.1"
+		"zod": "4.6.2"
 	}
 }
