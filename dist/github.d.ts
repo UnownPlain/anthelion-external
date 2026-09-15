@@ -15,6 +15,7 @@ type LatestReleaseOptions = GitHubRepository & {
   tagIncludes?: string;
   useLatestEndpoint?: boolean;
   perPage?: number;
+  assetRegex?: string;
 };
 type LatestFileCommitOptions = GitHubRepository & {
   branch?: string;
