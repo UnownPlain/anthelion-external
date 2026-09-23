@@ -12,7 +12,7 @@ type GitHubRepository = {
 };
 type LatestReleaseOptions = GitHubRepository & {
   kind?: 'stable' | 'prerelease' | 'all';
-  tagIncludes?: string;
+  tagRegex?: string;
   useLatestEndpoint?: boolean;
   perPage?: number;
   assetRegex?: string;
@@ -22,8 +22,8 @@ type LatestFileCommitOptions = GitHubRepository & {
   path: string;
 };
 export declare function getLatestFileCommit({ owner, repo, branch, path }: LatestFileCommitOptions): Promise<string>;
-export declare function getLatestReleaseFromRedirect({ owner, repo, tagIncludes }: GitHubRepository & {
-  tagIncludes?: string;
+export declare function getLatestReleaseFromRedirect({ owner, repo, tagRegex }: GitHubRepository & {
+  tagRegex?: string;
 }): Promise<{
   version: string;
   tag: string;
