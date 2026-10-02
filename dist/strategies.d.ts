@@ -39,6 +39,13 @@ export declare function tauri(options: {
   urls: string[];
   data: {
     version: string;
+    url: string;
+  };
+} | {
+  version: string;
+  urls: string[];
+  data: {
+    version: string;
     platforms: Record<string, {
       url: string;
     }>;
