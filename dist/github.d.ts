@@ -14,6 +14,7 @@ type LatestReleaseOptions = GitHubRepository & {
   kind?: 'stable' | 'prerelease' | 'all';
   tagRegex?: string;
   useLatestEndpoint?: boolean;
+  sortByVersion?: boolean;
   perPage?: number;
   assetRegex?: string;
 };
