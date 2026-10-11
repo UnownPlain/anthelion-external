@@ -38,6 +38,22 @@ export declare function getLatestRelease(options: LatestReleaseOptions): Promise
   tag: string;
   rawTag: string;
   title: string | null;
+  assets: {
+    url: string;
+    browser_download_url: string;
+    id: number;
+    node_id: string;
+    name: string;
+    label: string | null;
+    state: "uploaded" | "open";
+    content_type: string;
+    size: number;
+    digest: string | null;
+    download_count: number;
+    created_at: string;
+    updated_at: string;
+    uploader: import("@octokit/openapi-types").components["schemas"]["nullable-simple-user"];
+  }[];
   assetNames: () => string[];
   urls: () => string[];
 }>;
