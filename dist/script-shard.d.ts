@@ -98,3 +98,4 @@ export type ScriptShard = () => Promise<ScriptShardResultInput>;
 type Exact<Actual, Expected> = Actual extends Expected ? Actual & Record<Exclude<keyof Actual, keyof Expected>, never> : never;
 export declare function defineShard<const Result extends ScriptShardResultInput>(shard: () => Promise<Exact<Result, ScriptShardResultInput>>): typeof shard;
 //#endregion
+export {};

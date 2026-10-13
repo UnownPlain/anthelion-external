@@ -142,3 +142,4 @@ export declare const releaseNotesWithRequiredGithubRepositorySchema: z.ZodOption
 export type ReleaseNotesInput = z.input<typeof releaseNotesSchema>;
 export type ReleaseNotesConfig = z.output<typeof releaseNotesSchema>;
 //#endregion
+export {};

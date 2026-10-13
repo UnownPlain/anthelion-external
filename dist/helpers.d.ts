@@ -58,3 +58,4 @@ export declare function resolveDataBackedUrls(options: {
 type TemplateValue = string | number | bigint | boolean | null | undefined;
 export declare function dedent(strings: TemplateStringsArray, ...values: TemplateValue[]): string;
 //#endregion
+export {};

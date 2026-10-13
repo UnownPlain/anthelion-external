@@ -89,3 +89,4 @@ export declare function getReleaseByTag(options: GitHubRepository & {
 export declare function getRepositoryHeadSha(): Promise<string>;
 export declare function closeAllButMostRecentPR(packageIdentifier: string): Promise<void>;
 //#endregion
+export {};
