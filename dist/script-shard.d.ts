@@ -1,6 +1,5 @@
 import { ReleaseNotesSource } from "./release-notes.js";
 import { z } from "zod";
-//#region src/schema/script-shard.d.ts
 type UrlsReturnInput = unknown[] | {
   url: unknown;
   architecture?: unknown;
@@ -97,5 +96,4 @@ export type ScriptShardResultInput = z.input<typeof ScriptShardResult>;
 export type ScriptShard = () => Promise<ScriptShardResultInput>;
 type Exact<Actual, Expected> = Actual extends Expected ? Actual & Record<Exclude<keyof Actual, keyof Expected>, never> : never;
 export declare function defineShard<const Result extends ScriptShardResultInput>(shard: () => Promise<Exact<Result, ScriptShardResultInput>>): typeof shard;
-//#endregion
 export {};

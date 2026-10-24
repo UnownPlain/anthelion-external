@@ -1,4 +1,3 @@
-//#region src/strategies.d.ts
 export type MatchStrategyOptions = {
   url: string;
   regex: RegExp;
@@ -103,4 +102,3 @@ export declare function sourceforge(options: {
 }): Promise<{
   version: string;
 }>;
-//#endregion

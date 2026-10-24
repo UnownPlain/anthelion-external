@@ -1,5 +1,4 @@
 import { Komac, PullRequest, UpdatePackageRequest, UpdatePackageResult } from "@unownplain/anthelion-komac";
-//#region src/helpers.d.ts
 export declare const komac: Komac;
 export declare class Logger {
   private logs;
@@ -57,5 +56,4 @@ export declare function resolveDataBackedUrls(options: {
 })[];
 type TemplateValue = string | number | bigint | boolean | null | undefined;
 export declare function dedent(strings: TemplateStringsArray, ...values: TemplateValue[]): string;
-//#endregion
 export {};

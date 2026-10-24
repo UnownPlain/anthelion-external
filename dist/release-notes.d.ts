@@ -1,5 +1,4 @@
 import { z } from "zod";
-//#region src/schema/release-notes.d.ts
 export declare enum ReleaseNotesSource {
   Html = "html",
   Markdown = "markdown",
@@ -141,5 +140,4 @@ export declare const releaseNotesWithRequiredGithubRepositorySchema: z.ZodOption
 }, z.core.$strict>]>>;
 export type ReleaseNotesInput = z.input<typeof releaseNotesSchema>;
 export type ReleaseNotesConfig = z.output<typeof releaseNotesSchema>;
-//#endregion
 export {};

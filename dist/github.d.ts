@@ -1,4 +1,3 @@
-//#region src/github.d.ts
 export declare const githubClient: import("@octokit/core").Octokit & {
   paginate: import("@octokit/plugin-paginate-rest").PaginateInterface;
 } & import("@octokit/plugin-paginate-graphql").paginateGraphQLInterface & import("@octokit/plugin-rest-endpoint-methods").Api & {
@@ -88,5 +87,4 @@ export declare function getReleaseByTag(options: GitHubRepository & {
 }>;
 export declare function getRepositoryHeadSha(): Promise<string>;
 export declare function closeAllButMostRecentPR(packageIdentifier: string): Promise<void>;
-//#endregion
 export {};
