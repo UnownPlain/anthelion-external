@@ -9,9 +9,9 @@ export declare enum ReleaseNotesSource {
   BrowserRendering = "browser-rendering"
 }
 declare const releaseNotesNestedSourceSchema: z.ZodEnum<{
-  html: ReleaseNotesSource.Html;
-  markdown: ReleaseNotesSource.Markdown;
-  "plain-text": ReleaseNotesSource.PlainText;
+  [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+  [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+  [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
 }>;
 export type NestedReleaseNotesSource = z.infer<typeof releaseNotesNestedSourceSchema>;
 export declare const releaseNotesSchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
@@ -57,9 +57,9 @@ export declare const releaseNotesSchema: z.ZodOptional<z.ZodUnion<readonly [z.Zo
   releaseNotesUrl: z.ZodOptional<z.ZodString>;
   path: z.ZodString;
   nestedSource: z.ZodEnum<{
-    html: ReleaseNotesSource.Html;
-    markdown: ReleaseNotesSource.Markdown;
-    "plain-text": ReleaseNotesSource.PlainText;
+    [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+    [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+    [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
   }>;
   cleanup: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>, z.ZodObject<{
@@ -68,9 +68,9 @@ export declare const releaseNotesSchema: z.ZodOptional<z.ZodUnion<readonly [z.Zo
   releaseNotesUrl: z.ZodOptional<z.ZodString>;
   path: z.ZodString;
   nestedSource: z.ZodEnum<{
-    html: ReleaseNotesSource.Html;
-    markdown: ReleaseNotesSource.Markdown;
-    "plain-text": ReleaseNotesSource.PlainText;
+    [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+    [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+    [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
   }>;
   cleanup: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "source">, z.ZodObject<{
@@ -119,9 +119,9 @@ export declare const releaseNotesWithRequiredGithubRepositorySchema: z.ZodOption
   releaseNotesUrl: z.ZodOptional<z.ZodString>;
   path: z.ZodString;
   nestedSource: z.ZodEnum<{
-    html: ReleaseNotesSource.Html;
-    markdown: ReleaseNotesSource.Markdown;
-    "plain-text": ReleaseNotesSource.PlainText;
+    [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+    [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+    [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
   }>;
   cleanup: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>, z.ZodObject<{
@@ -130,9 +130,9 @@ export declare const releaseNotesWithRequiredGithubRepositorySchema: z.ZodOption
   releaseNotesUrl: z.ZodOptional<z.ZodString>;
   path: z.ZodString;
   nestedSource: z.ZodEnum<{
-    html: ReleaseNotesSource.Html;
-    markdown: ReleaseNotesSource.Markdown;
-    "plain-text": ReleaseNotesSource.PlainText;
+    [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+    [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+    [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
   }>;
   cleanup: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>], "source">, z.ZodObject<{
