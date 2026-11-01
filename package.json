@@ -44,7 +44,7 @@
 	},
 	"dependencies": {
 		"@ai-sdk/groq": "4.0.69",
-		"@rcompat/fs": "0.38.0",
+		"@rcompat/fs": "0.39.0",
 		"@unownplain/anthelion-komac": "0.0.78",
 		"ai": "7.0.150",
 		"ansis": "4.4.0",
@@ -53,5 +53,8 @@
 		"octokit": "5.0.5",
 		"txml": "6.0.3",
 		"zod": "4.6.7"
+	},
+	"overrides": {
+		"rolldown-plugin-dts": "0.29.0"
 	}
 }
