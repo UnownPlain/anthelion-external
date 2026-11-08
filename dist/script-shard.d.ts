@@ -1,4 +1,4 @@
-import { ReleaseNotesSource } from "./release-notes.js";
+import { i as ReleaseNotesSource } from "./release-notes2.js";
 import { z } from "zod";
 type UrlsReturnInput = unknown[] | {
   url: unknown;

@@ -1,1 +1,1 @@
-import{resolve as e}from"node:path";function t(){return e(process.env.ANTHELION_SHARDS_DIR||`shards`)}function n(){return{owner:process.env.KOMAC_GITHUB_OWNER||`microsoft`,repo:process.env.KOMAC_GITHUB_REPO||`winget-pkgs`,branch:process.env.KOMAC_GITHUB_REF||`master`}}export{t as getShardsDirectory,n as getTargetRepository};
+export{t as config,n as githubClient,r as komac}from"./config2.js";

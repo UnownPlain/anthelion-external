@@ -1,5 +1,4 @@
-import { Komac, PullRequest, UpdatePackageRequest, UpdatePackageResult } from "@unownplain/anthelion-komac";
-export declare const komac: Komac;
+import { PullRequest, UpdatePackageRequest, UpdatePackageResult } from "@unownplain/anthelion-komac";
 export declare class Logger {
   private logs;
   log(line: string): void;

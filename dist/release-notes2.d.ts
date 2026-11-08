@@ -1,0 +1,143 @@
+import { z } from "zod";
+declare enum ReleaseNotesSource {
+  Html = "html",
+  Markdown = "markdown",
+  PlainText = "plain-text",
+  Github = "github",
+  Json = "json",
+  Yaml = "yaml",
+  BrowserRendering = "browser-rendering"
+}
+declare const releaseNotesNestedSourceSchema: z.ZodEnum<{
+  [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+  [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+  [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
+}>;
+type NestedReleaseNotesSource = z.infer<typeof releaseNotesNestedSourceSchema>;
+declare const releaseNotesSchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Html>;
+  sourceUrl: z.ZodString;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  characterLimit: z.ZodOptional<z.ZodInt>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Markdown>;
+  sourceUrl: z.ZodString;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  characterLimit: z.ZodOptional<z.ZodInt>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.PlainText>;
+  sourceUrl: z.ZodString;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  characterLimit: z.ZodOptional<z.ZodInt>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.BrowserRendering>;
+  sourceUrl: z.ZodString;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  characterLimit: z.ZodOptional<z.ZodInt>;
+  waitUntil: z.ZodOptional<z.ZodEnum<{
+    domcontentloaded: "domcontentloaded";
+    load: "load";
+    networkidle0: "networkidle0";
+    networkidle2: "networkidle2";
+  }>>;
+  waitForSelector: z.ZodOptional<z.ZodString>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Github>;
+  owner: z.ZodOptional<z.ZodString>;
+  repo: z.ZodOptional<z.ZodString>;
+  tag: z.ZodOptional<z.ZodString>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Json>;
+  sourceUrl: z.ZodURL;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  path: z.ZodString;
+  nestedSource: z.ZodEnum<{
+    [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+    [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+    [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
+  }>;
+  cleanup: z.ZodOptional<z.ZodBoolean>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Yaml>;
+  sourceUrl: z.ZodURL;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  path: z.ZodString;
+  nestedSource: z.ZodEnum<{
+    [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+    [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+    [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
+  }>;
+  cleanup: z.ZodOptional<z.ZodBoolean>;
+}, z.core.$strip>], "source">, z.ZodObject<{
+  releaseNotesUrl: z.ZodString;
+}, z.core.$strict>]>>;
+declare const releaseNotesWithRequiredGithubRepositorySchema: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Html>;
+  sourceUrl: z.ZodString;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  characterLimit: z.ZodOptional<z.ZodInt>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Markdown>;
+  sourceUrl: z.ZodString;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  characterLimit: z.ZodOptional<z.ZodInt>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.PlainText>;
+  sourceUrl: z.ZodString;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  characterLimit: z.ZodOptional<z.ZodInt>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.BrowserRendering>;
+  sourceUrl: z.ZodString;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  characterLimit: z.ZodOptional<z.ZodInt>;
+  waitUntil: z.ZodOptional<z.ZodEnum<{
+    domcontentloaded: "domcontentloaded";
+    load: "load";
+    networkidle0: "networkidle0";
+    networkidle2: "networkidle2";
+  }>>;
+  waitForSelector: z.ZodOptional<z.ZodString>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Github>;
+  owner: z.ZodNonOptional<z.ZodOptional<z.ZodString>>;
+  repo: z.ZodNonOptional<z.ZodOptional<z.ZodString>>;
+  tag: z.ZodOptional<z.ZodString>;
+  cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Json>;
+  sourceUrl: z.ZodURL;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  path: z.ZodString;
+  nestedSource: z.ZodEnum<{
+    [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+    [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+    [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
+  }>;
+  cleanup: z.ZodOptional<z.ZodBoolean>;
+}, z.core.$strip>, z.ZodObject<{
+  source: z.ZodLiteral<ReleaseNotesSource.Yaml>;
+  sourceUrl: z.ZodURL;
+  releaseNotesUrl: z.ZodOptional<z.ZodString>;
+  path: z.ZodString;
+  nestedSource: z.ZodEnum<{
+    [ReleaseNotesSource.Html]: ReleaseNotesSource.Html;
+    [ReleaseNotesSource.Markdown]: ReleaseNotesSource.Markdown;
+    [ReleaseNotesSource.PlainText]: ReleaseNotesSource.PlainText;
+  }>;
+  cleanup: z.ZodOptional<z.ZodBoolean>;
+}, z.core.$strip>], "source">, z.ZodObject<{
+  releaseNotesUrl: z.ZodString;
+}, z.core.$strict>]>>;
+type ReleaseNotesInput = z.input<typeof releaseNotesSchema>;
+type ReleaseNotesConfig = z.output<typeof releaseNotesSchema>;
+export { releaseNotesSchema as a, ReleaseNotesSource as i, ReleaseNotesConfig as n, releaseNotesWithRequiredGithubRepositorySchema as o, ReleaseNotesInput as r, NestedReleaseNotesSource as t };

@@ -1,1 +1,1 @@
-export{t as closeAllButMostRecentPR,n as getLatestFileCommit,r as getLatestRelease,i as getLatestReleaseFromRedirect,a as getReleaseByTag,o as getRepositoryHeadSha,s as githubClient}from"./github2.js";
+export{t as closeAllButMostRecentPR,n as getLatestFileCommit,r as getLatestRelease,i as getLatestReleaseFromRedirect,a as getReleaseByTag,o as getRepositoryHeadSha}from"./github2.js";
