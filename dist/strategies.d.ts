@@ -86,6 +86,7 @@ export declare function pageMatch(options: MatchStrategyOptions): Promise<{
 export declare function redirectMatch(options: Omit<MatchStrategyOptions, 'url'> & {
   url: string[];
   method?: 'head' | 'get';
+  maxRedirects?: number;
 }): Promise<{
   version: string;
   urls: string[];
