@@ -20,6 +20,7 @@ export declare const ScriptShardResult: z.ZodObject<{
   releaseNotes: z.ZodOptional<z.ZodUnion<readonly [z.ZodDiscriminatedUnion<[z.ZodObject<{
     source: z.ZodLiteral<ReleaseNotesSource.Html>;
     sourceUrl: z.ZodString;
+    regex: z.ZodOptional<z.ZodString>;
     releaseNotesUrl: z.ZodOptional<z.ZodString>;
     characterLimit: z.ZodOptional<z.ZodInt>;
     cleanup: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
