@@ -1,18 +1,11 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": ["config:recommended", "helpers:pinGitHubActionDigestsToSemver"],
+	"minimumReleaseAge": "7 days",
 	"packageRules": [
 		{
 			"matchUpdateTypes": ["minor", "patch", "digest"],
 			"automerge": true
-		},
-		{
-			"matchPackageNames": ["mise"],
-			"minimumReleaseAge": "3 days"
-		},
-		{
-			"matchManagers": "github-actions",
-			"minimumReleaseAge": "7 days"
 		}
 	],
 	"npm": {
